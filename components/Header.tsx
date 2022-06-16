@@ -21,10 +21,13 @@ const Header = () => {
   const toggleProfileSettings = () => {
     const dropdownMenu = document.querySelector('.dropdown-menu');
     const profile = document.querySelector('.profile');
+    const profileArrow = document.querySelector('.profile .arrow');
 
     profile.classList.toggle('rounded-lg');
     profile.classList.toggle('rounded-full');
     profile.classList.toggle('bg-primary');
+
+    profileArrow.classList.toggle('rotate-180');
 
     dropdownMenu.classList.toggle('hidden');
   };
@@ -36,7 +39,7 @@ const Header = () => {
         <div className='text-3xl font-bold uppercase'>Soundstar</div>
       </div>
 
-      <div className='profile absolute top-2 right-6 rounded-full border-2 border-primary p-1 pr-3'>
+      <div className='profile absolute top-2 right-6 rounded-full border-2 border-primary p-1 pr-3 transition-colors duration-200 hover:bg-primary'>
         <div
           className='flex cursor-pointer items-center space-x-3'
           onClick={() => toggleProfileSettings()}
@@ -45,24 +48,33 @@ const Header = () => {
 
           <div>{session?.user.username}</div>
 
-          <ChevronDownIcon className='h-5 w-5' />
+          <ChevronDownIcon className='arrow h-5 w-5 transition-all' />
         </div>
 
-        <div className='dropdown-menu mt-4 hidden'>
+        <div className='dropdown-menu mt-4 hidden leading-8 '>
           <div className='mb-2 text-right'>
             <div>
               <input type='radio' name='theme' id='dark' />
-              <label for='dark'>Dark</label>
+              <label htmlFor='dark'>Dark</label>
             </div>
 
             <div>
               <input type='radio' name='theme' id='light' />
-              <label for='light'>Light</label>
+              <label htmlFor='light'>Light</label>
             </div>
 
-            <div>
-              <input type='radio' name='theme' id='system' checked />
-              <label for='system'>System</label>
+            <div className='space-x-1'>
+              <input
+                className='h-4 w-4 text-2xl'
+                type='radio'
+                name='theme'
+                id='system'
+                defaultChecked
+              />
+
+              <label className='' htmlFor='system'>
+                System
+              </label>
             </div>
           </div>
 

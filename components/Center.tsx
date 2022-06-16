@@ -1,9 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { playlistIdState, playlistState } from '../atoms/playlistAtom';
+import useSpotify from '../hooks/useSpotify';
+import Track from './Track';
 
 const Center = () => {
+  const spotifyApi = useSpotify();
+  const playlistId = useRecoilValue(playlistIdState);
+  const [playlist, setPlaylist] = useRecoilState(playlistState);
+
+  useEffect(() => {
+    spotifyApi
+      .getPlaylist(playlistId)
+      .then((data) => {
+        setPlaylist(data.body);
+      })
+      .catch((err) => console.log('Something went wrong!', err));
+  }, [spotifyApi, playlistId]);
+
+  console.log(playlist);
+
   return (
-    <div className='flex flex-grow'>
-      <div>Center</div>
+    <div className='h-screen overflow-y-scroll p-4 scrollbar-hide'>
+      <div className='mb-4 flex space-x-10 p-4'>
+        <img
+          className='h-44 w-44 object-cover shadow-xl shadow-black/40'
+          src={playlist?.images?.[0]?.url}
+        />
+        <div className='space-y-5'>
+          <div className='mb text-4xl font-bold'>{playlist?.name}</div>
+          <div className='text-gray-500 dark:text-gray-300/50'>
+            Made by{' '}
+            <span className='cursor-pointer hover:text-primary hover:underline dark:hover:text-gray-200/80'>
+              {playlist?.owner?.display_name}
+            </span>
+          </div>
+          <div className=''>{playlist?.description}</div>
+          <div>{playlist?.tracks?.total} Songs</div>
+        </div>
+      </div>
+
+      <div className=''>
+        {playlist?.tracks?.items?.map((track) => {
+          return (
+            <div className='border-b border-gray-300/50'>
+              <Track track={track?.track} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

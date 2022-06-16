@@ -13,13 +13,7 @@ const Home: NextPage = () => {
         <link rel='icon' href='/musicIcon.svg' />
       </Head>
 
-      <main className='flex'>
-        <Sidebar />
-        <div className='flex-1'>
-          <Header />
-          <Center />
-        </div>
-      </main>
+      <Center />
     </div>
   );
 };
