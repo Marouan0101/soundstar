@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import useSpotify from '../hooks/useSpotify';
 import { playlistIdState } from '../atoms/playlistAtom';
+import Link from 'next/link';
 
 const Sidebar = () => {
   const spotifyApi = useSpotify();
@@ -22,7 +23,9 @@ const Sidebar = () => {
   return (
     <div className='h-screen max-w-[14rem] overflow-x-hidden overflow-y-scroll border-r border-gray-400/50 p-4 scrollbar-hide'>
       <div className=' space-y-2 text-lg font-medium'>
-        <div className='cursor-pointer hover:text-primary'>Home</div>
+        <div className='cursor-pointer hover:text-primary'>
+          <Link href='/'>Home</Link>
+        </div>
         <div className='cursor-pointer hover:text-primary'>Your Library</div>
       </div>
 
@@ -54,7 +57,7 @@ const Sidebar = () => {
               key={playlist.id}
               onClick={() => setPlaylistId(playlist.id)}
             >
-              {playlist.name}
+              <Link href='/playlist'>{playlist.name}</Link>
             </div>
           );
         })}

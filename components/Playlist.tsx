@@ -18,13 +18,11 @@ const Center = () => {
       .catch((err) => console.log('Something went wrong!', err));
   }, [spotifyApi, playlistId]);
 
-  console.log(playlist);
-
   return (
-    <div className='h-screen overflow-y-scroll p-4 scrollbar-hide'>
+    <div className='h-screen overflow-y-scroll  scrollbar-hide'>
       <div className='mb-4 flex space-x-10 p-4'>
         <img
-          className='h-44 w-44 object-cover shadow-xl shadow-black/40'
+          className='h-44 w-44 object-cover shadow-xl shadow-black/40 2xl:h-60 2xl:w-60'
           src={playlist?.images?.[0]?.url}
         />
         <div className='space-y-5'>
@@ -41,12 +39,8 @@ const Center = () => {
       </div>
 
       <div className=''>
-        {playlist?.tracks?.items?.map((track) => {
-          return (
-            <div className='border-b border-gray-300/50'>
-              <Track track={track?.track} />
-            </div>
-          );
+        {playlist?.tracks?.items?.map((track, i) => {
+          return <Track track={track?.track} order={i} />;
         })}
       </div>
     </div>

@@ -4,7 +4,6 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 
 const Header = () => {
   const { data: session, status } = useSession();
-  console.log(session?.user.image);
 
   /* const prefersDarkTheme = window.matchMedia(
       '(prefers-color-scheme: dark)'
