@@ -19,7 +19,7 @@ const Center = () => {
   }, [spotifyApi, playlistId]);
 
   return (
-    <div className='h-screen overflow-y-scroll  scrollbar-hide'>
+    <div className='h-screen overflow-y-scroll pb-44 scrollbar-hide'>
       <div className='mb-4 flex space-x-10 p-4'>
         <img
           className='h-44 w-44 object-cover shadow-xl shadow-black/40 2xl:h-60 2xl:w-60'

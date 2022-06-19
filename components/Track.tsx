@@ -1,3 +1,4 @@
+import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import React from 'react';
 import { GrPlay } from 'react-icons/gr';
 
@@ -15,7 +16,7 @@ const Track = ({ track, order }) => {
             {/* Play Icon */}
             <img
               src='/playIcon.svg'
-              className='mr-2 h-10 w-10 cursor-pointer rounded-full border border-transparent p-1 pl-2 hover:border-primary 2xl:h-12 2xl:w-12'
+              className='mr-2 h-10 w-10 cursor-pointer rounded-full border-2 border-transparent p-1 pl-2 hover:border-primary 2xl:h-12 2xl:w-12'
             />
 
             <div className='leading-5'>
@@ -42,9 +43,13 @@ const Track = ({ track, order }) => {
         </div>
 
         {/* Song Duration */}
-        <div className='text-gray-500 dark:text-gray-200/80 '>
-          {Math.floor(track.duration_ms / 60000)}:
-          {((track.duration_ms % 60000) / 1000).toFixed(0)}
+        <div className='flex space-x-3'>
+          <div className='text-gray-500 dark:text-gray-200/80 '>
+            {Math.floor(track.duration_ms / 60000)}:
+            {((track.duration_ms % 60000) / 1000).toFixed(0)}
+          </div>
+
+          <DotsHorizontalIcon className='w-6 cursor-pointer' />
         </div>
       </div>
     </div>

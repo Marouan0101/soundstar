@@ -4,6 +4,7 @@ import { SessionProvider, signIn, useSession } from 'next-auth/react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import { RecoilRoot } from 'recoil';
+import Player from '../components/Player';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <Header />
             <Component {...pageProps} />
           </div>
+          <Player />
         </main>
       </RecoilRoot>
     </SessionProvider>

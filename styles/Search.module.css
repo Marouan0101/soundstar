@@ -1,0 +1,7 @@
+.item:hover .imageAndPlayContainer .image {
+  @apply brightness-50;
+}
+
+.item:hover .imageAndPlayContainer .playIcon {
+  @apply block;
+}

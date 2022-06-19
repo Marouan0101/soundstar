@@ -12,7 +12,7 @@ const NewReleases = () => {
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
-      spotifyApi.getNewReleases('DK').then((data) => {
+      spotifyApi.getNewReleases().then((data) => {
         setNewReleases(data.body);
         console.log(newReleases);
       });
@@ -24,15 +24,17 @@ const NewReleases = () => {
       {newReleases?.albums?.items?.map((item) => {
         return (
           <div className='flex'>
-            <img className='h-72 w-72 rounded-2xl' src={item.images[0].url} />
+            <img className='h-72 w-72 rounded-2xl' src={item?.images[0]?.url} />
 
             <div>
-              <div className='text-4xl font-bold'>{item.name}</div>
+              <div className='text-4xl font-bold'>{item?.name}</div>
               <div className='flex space-x-4'>
                 {item?.artists?.map((artist) => {
-                  return <div>{artist.name}</div>;
+                  return <div>{artist?.name}</div>;
                 })}
               </div>
+
+              <div>{item?.album_type}</div>
             </div>
           </div>
         );
