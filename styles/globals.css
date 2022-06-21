@@ -5,3 +5,34 @@
 body {
   @apply overflow-hidden bg-slate-50 dark:bg-dark dark:text-gray-50;
 }
+
+/* Player */
+
+/* Slider */
+._SliderRSWP {
+  @apply cursor-pointer rounded-full;
+}
+
+/* Slider handle/thumb */
+._SliderRSWP span {
+  @apply cursor-e-resize;
+}
+
+/* Everything except the slider */
+._ContentRSWP {
+  @apply p-4;
+}
+
+/* Song info (img, title, artist) */
+._InfoRSWP {
+}
+
+/* Info img */
+._InfoRSWP img {
+  @apply !h-14 !w-14 object-cover;
+}
+
+/* box containing song title and artist */
+.__nnvdcq p a {
+  @apply text-base;
+}

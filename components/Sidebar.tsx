@@ -22,7 +22,7 @@ const Sidebar = () => {
 
   if (session) {
     return (
-      <div className='h-screen max-w-[14rem] overflow-x-hidden overflow-y-scroll border-r border-gray-400/50 p-4 pb-20 scrollbar-hide'>
+      <div className='h-screen max-w-[14rem] overflow-x-hidden overflow-y-scroll border-r border-gray-400/50 p-4 pb-24 scrollbar-hide'>
         <div className='mb-6 flex items-center space-x-2'>
           <img className='h-6 w-6' src='/musicIcon.svg' />
           <div className='text-2xl font-bold uppercase'>Soundstar</div>

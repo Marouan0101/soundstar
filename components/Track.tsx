@@ -1,10 +1,28 @@
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
+import { useSession } from 'next-auth/react';
 import React from 'react';
 import { GrPlay } from 'react-icons/gr';
+import { useRecoilState } from 'recoil';
+import { currentTrackIdState, isPlayingState } from '../atoms/songAtom';
+import useSpotify from '../hooks/useSpotify';
+import { millisToMinutesAndSeconds } from '../lib/time';
 
 const Track = ({ track, order }) => {
+  const spotifyApi = useSpotify();
+  const { data: session } = useSession();
+
+  const playSong = () => {
+    if (spotifyApi.getAccessToken()) {
+      spotifyApi
+        .play({
+          uris: [track.uri],
+        })
+        .catch((err) => {});
+    }
+  };
+
   return (
-    <div key={track?.id} className='flex items-center py-1 pr-2'>
+    <div className='flex items-center py-1 pr-2'>
       {/* Track Nr. */}
       <div className='w-10 text-center text-gray-500 dark:text-gray-200/80'>
         {order + 1}
@@ -17,6 +35,7 @@ const Track = ({ track, order }) => {
             <img
               src='/playIcon.svg'
               className='mr-2 h-10 w-10 cursor-pointer rounded-full border-2 border-transparent p-1 pl-2 hover:border-primary 2xl:h-12 2xl:w-12'
+              onClick={() => playSong()}
             />
 
             <div className='leading-5'>
@@ -45,8 +64,10 @@ const Track = ({ track, order }) => {
         {/* Song Duration */}
         <div className='flex space-x-3'>
           <div className='text-gray-500 dark:text-gray-200/80 '>
-            {Math.floor(track.duration_ms / 60000)}:
-            {((track.duration_ms % 60000) / 1000).toFixed(0)}
+            {/*  {Math.floor(track.duration_ms / 60000)}:
+            {((track.duration_ms % 60000) / 1000).toFixed(0)} */}
+
+            {millisToMinutesAndSeconds(track.duration_ms)}
           </div>
 
           <DotsHorizontalIcon className='w-6 cursor-pointer' />

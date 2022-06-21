@@ -8,19 +8,17 @@ const NewReleases = () => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [newReleases, setNewReleases] = useState([]);
-  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getNewReleases().then((data) => {
         setNewReleases(data.body);
-        console.log(newReleases);
       });
     }
   }, [session, spotifyApi]);
 
   return (
-    <div className='h-screen overflow-y-scroll p-4 scrollbar-hide'>
+    <div className='h-screen overflow-y-scroll p-4 pb-52 scrollbar-hide'>
       {newReleases?.albums?.items?.map((item) => {
         return (
           <div className='flex'>

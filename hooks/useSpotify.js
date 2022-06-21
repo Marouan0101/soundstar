@@ -15,6 +15,7 @@ const useSpotify = () => {
       // If refresh token attempt fails, direct user to login
       if (session.error === 'RefreshAccessTokenError') {
         signIn();
+        console.log('Refresh token attempt failed');
       }
 
       spotifyApi.setAccessToken(session.user.accessToken);

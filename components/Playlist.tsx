@@ -9,6 +9,20 @@ const Center = () => {
   const playlistId = useRecoilValue(playlistIdState);
   const [playlist, setPlaylist] = useRecoilState(playlistState);
 
+  const startPlaylist = () => {
+    if (spotifyApi.getAccessToken() && playlist) {
+      var uris = Object.keys(playlist.tracks.items).map(
+        (track) => playlist.tracks.items[track].track.uri
+      );
+
+      spotifyApi
+        .play({
+          uris: uris,
+        })
+        .catch((err) => {});
+    }
+  };
+
   useEffect(() => {
     spotifyApi
       .getPlaylist(playlistId)
@@ -35,12 +49,18 @@ const Center = () => {
           </div>
           <div className=''>{playlist?.description}</div>
           <div>{playlist?.tracks?.total} Songs</div>
+
+          <div className='cursor-pointer' onClick={() => startPlaylist()}>
+            Play
+          </div>
         </div>
       </div>
 
       <div className=''>
         {playlist?.tracks?.items?.map((track, i) => {
-          return <Track track={track?.track} order={i} />;
+          return (
+            <Track key={track?.track?.id} track={track?.track} order={i} />
+          );
         })}
       </div>
     </div>

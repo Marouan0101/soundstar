@@ -16,8 +16,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <Header />
             <Component {...pageProps} />
           </div>
-          <Player />
         </main>
+        <div className='sticky bottom-0'>
+          <Player />
+        </div>
       </RecoilRoot>
     </SessionProvider>
   );

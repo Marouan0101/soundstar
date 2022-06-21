@@ -13,6 +13,8 @@ module.exports = {
         green: '#4AD9C1',
         pink: '#E81C6F',
         dark: '#030514',
+        light: '#f8fafc',
+        'my-gray': '#6b7280',
       },
     },
   },

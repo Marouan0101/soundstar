@@ -1,10 +1,16 @@
 import type { NextPage } from 'next';
 import { getProviders, signIn } from 'next-auth/react';
+import Head from 'next/head';
 import Image from 'next/image';
 
 const Login: NextPage = ({ providers }) => {
   return (
     <div className='flex min-h-screen w-full flex-col items-center justify-center space-y-5'>
+      <Head>
+        <title>Soundstar | Login</title>
+        <link rel='icon' href='/musicIcon.svg' />
+      </Head>
+
       <Image width={130} height={130} src='https://i.imgur.com/fPuEa9V.png' />
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
