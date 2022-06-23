@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Playlist from '../components/Playlist';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import { Toaster } from 'react-hot-toast';
+import tailwindConfig from '../tailwind.config';
 
 const playlist: NextPage = () => {
   return (

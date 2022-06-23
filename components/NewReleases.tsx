@@ -21,14 +21,14 @@ const NewReleases = () => {
     <div className='h-screen overflow-y-scroll p-4 pb-52 scrollbar-hide'>
       {newReleases?.albums?.items?.map((item) => {
         return (
-          <div className='flex'>
+          <div key={item.id} className='flex'>
             <img className='h-72 w-72 rounded-2xl' src={item?.images[0]?.url} />
 
             <div>
               <div className='text-4xl font-bold'>{item?.name}</div>
               <div className='flex space-x-4'>
                 {item?.artists?.map((artist) => {
-                  return <div>{artist?.name}</div>;
+                  return <div key={artist.id}>{artist?.name}</div>;
                 })}
               </div>
 

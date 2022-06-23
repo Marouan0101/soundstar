@@ -6,6 +6,8 @@ import { playlistIdState } from '../atoms/playlistAtom';
 import useSpotify from '../hooks/useSpotify';
 import styles from '/styles/Search.module.css';
 import { debounce } from 'lodash';
+import MoreOptions from './MoreOptions';
+import Track from './Track';
 
 const Search = () => {
   const spotifyApi = useSpotify();
@@ -39,14 +41,14 @@ const Search = () => {
             <div className='border-r border-gray-400/50 pr-3'>
               <div className='mb-2 text-xl font-bold'>Songs</div>
               <div className='space-y-2'>
-                {results?.tracks?.items.map((track) => {
+                {results?.tracks?.items.map((track, i) => {
                   return (
-                    <div
+                    /* <div
                       key={track.id}
-                      className={`${styles.item} flex items-center overflow-hidden rounded-lg bg-gray-300/30 hover:bg-gray-300/50 dark:bg-gray-400/10 dark:hover:bg-gray-400/20`}
+                      className={`${styles.item} flex items-center   bg-gray-300/30 hover:bg-gray-300/50 dark:bg-gray-400/10 dark:hover:bg-gray-400/20`}
                     >
                       <div
-                        className={`relative w-16 items-center ${styles.imageAndPlayContainer}`}
+                        className={`relative w-16 items-center overflow-hidden rounded-l-lg ${styles.imageAndPlayContainer}`}
                       >
                         <img
                           src='/playIcon.svg'
@@ -64,6 +66,7 @@ const Search = () => {
                           src={track.album.images[0]?.url}
                         />
                       </div>
+
                       <div className='px-2'>
                         <div className='whitespace-nowrap'>{track.name}</div>
                         <div className='flex space-x-2'>
@@ -76,7 +79,11 @@ const Search = () => {
                           })}
                         </div>
                       </div>
-                    </div>
+
+                      <MoreOptions track={track} />
+                    </div> */
+
+                    <Track track={track} order={i} />
                   );
                 })}
               </div>

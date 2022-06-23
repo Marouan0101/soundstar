@@ -1,0 +1,3 @@
+.addToPlaylist:hover .playlists {
+  @apply block;
+}

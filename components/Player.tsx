@@ -26,7 +26,6 @@ const Player = () => {
       });
     }
   }, [spotifyApi, session]);
-  console.log(LOGIN_URL);
 
   if (session) {
     if (recentlyPlayedTrack && spotifyApi.getAccessToken()) {
@@ -34,12 +33,13 @@ const Player = () => {
         <div>
           <SpotifyWebPlayer
             token={spotifyApi.getAccessToken()}
-            uris={recentlyPlayedTrack.uri}
+            uris={[`${recentlyPlayedTrack.uri}`]}
             autoPlay
             name='Soundstar'
             initialVolume={0.5}
             persistDeviceSelection
             showSaveIcon
+            play
             styles={{
               activeColor: tailwindConfig.theme.extend.colors.pink,
               bgColor: window.matchMedia('(prefers-color-scheme: dark)').matches

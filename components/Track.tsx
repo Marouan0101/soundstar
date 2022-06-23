@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { currentTrackIdState, isPlayingState } from '../atoms/songAtom';
 import useSpotify from '../hooks/useSpotify';
 import { millisToMinutesAndSeconds } from '../lib/time';
+import MoreOptions from './MoreOptions';
 
 const Track = ({ track, order }) => {
   const spotifyApi = useSpotify();
@@ -46,7 +47,10 @@ const Track = ({ track, order }) => {
               <div className='flex space-x-4'>
                 {track?.artists?.map((artist) => {
                   return (
-                    <div className='cursor-pointer text-gray-500 hover:text-primary hover:underline dark:text-gray-300/50 dark:hover:text-gray-200/80'>
+                    <div
+                      key={artist?.id}
+                      className='cursor-pointer text-gray-500 hover:text-primary hover:underline dark:text-gray-300/50 dark:hover:text-gray-200/80'
+                    >
                       {artist?.name}
                     </div>
                   );
@@ -70,7 +74,7 @@ const Track = ({ track, order }) => {
             {millisToMinutesAndSeconds(track.duration_ms)}
           </div>
 
-          <DotsHorizontalIcon className='w-6 cursor-pointer' />
+          <MoreOptions track={track} order={order} />
         </div>
       </div>
     </div>
